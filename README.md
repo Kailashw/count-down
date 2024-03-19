@@ -30,7 +30,7 @@ To install the Countdown Timer Chrome Extension, follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the [MIT](MIT) file for details.
+This project is licensed under the MIT License - see the [MIT](MIT.md) file for details.
 
 ## Acknowledgments
 
