@@ -37,12 +37,13 @@ function startTimer() {
 
 function displayTimeLeft(seconds) {
   const days = Math.floor(seconds / (3600 * 24));
-    seconds %= 3600 * 24;
-    const hours = Math.floor(seconds / 3600);
-    seconds %= 3600;
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    timerDisplay.textContent = `${days}d ${hours}h ${minutes}m ${remainingSeconds}s`;
+  seconds %= 3600 * 24;
+  const hours = Math.floor(seconds / 3600);
+  seconds %= 3600;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  timerDisplay.textContent = seconds ? `${days}d ${hours}h ${minutes}m ${remainingSeconds}s` : 'Time Up !!';
 }
 
 function resetTimer() {
@@ -53,11 +54,6 @@ function resetTimer() {
 
 function setAlarm() {
   // Your alarm logic here
-   // Play the beep sound
-  const beepSound = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgA');
-  beepSound.play();
   alert('Alarm! Time\'s up!');
+  // You can also play an audio file or trigger any other action as your alarm
 }
-
-
-  
