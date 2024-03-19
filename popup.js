@@ -5,10 +5,11 @@ let resetButton = document.getElementById('resetButton');
 let datetimepicker = document.getElementById('datetimepicker');
 
 // Load countdown value from local storage
-let countdownValue = localStorage.getItem('countdown');
-if (countdownValue) {
-  datetimepicker.value = countdownValue;
-}
+chrome.storage.local.get('countdown', function(data) {
+  if (data.countdown) {
+    datetimepicker.value = data.countdown;
+  }
+});
 
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
@@ -32,7 +33,7 @@ function startTimer() {
   }, 1000);
 
   // Save countdown value to local storage
-  localStorage.setItem('countdown', datetimepicker.value);
+  chrome.storage.local.set({ 'countdown': datetimepicker.value });
 }
 
 function displayTimeLeft(seconds) {
@@ -43,13 +44,13 @@ function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
 
-  timerDisplay.textContent = seconds ? `${days}d ${hours}h ${minutes}m ${remainingSeconds}s` : 'Time Up !!';
+  timerDisplay.textContent = seconds ? `${days}d ${hours}h ${minutes}m ${remainingSeconds}s` : "Time's Up";
 }
 
 function resetTimer() {
   clearInterval(countdown);
   timerDisplay.textContent = '00:00:00';
-  localStorage.removeItem('countdown'); // Remove countdown value from local storage
+  chrome.storage.local.remove('countdown'); // Remove countdown value from local storage
 }
 
 function setAlarm() {
